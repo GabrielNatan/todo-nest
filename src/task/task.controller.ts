@@ -1,35 +1,31 @@
-import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { TaskRepository } from "./task.repository";
 
 @Controller('/')
 export class TaskController{
-    tasks = ["um"];
+
+    constructor(private taskRepository: TaskRepository){}
 
     @Get()
     async listTask(){
-        return this.tasks;
+        return this.taskRepository.listTask();
     }
 
     @Post()
-    async newTask(){
-        this.tasks.push("dois");
-        return "dois";
+    async newTask(@Body() newTask){
+        this.taskRepository.addNewtask(newTask);
+        return newTask;
     }
 
     @Put()
-    async updateTask(){
-        
-        let newTask = [this.tasks[0],"tres"];
-        this.tasks = newTask
-        return this.tasks;
+    async updateTask(@Body() updateTask){
+        this.taskRepository.updateTask(updateTask);
+        return updateTask;
     }
 
-    @Delete()
-    async deleteTask(){
-        this.tasks = this.tasks.map(task=>{
-           if(task != "um"){
-               return task
-           }
-        })
-        return this.tasks;
+    @Delete('/:id')
+    async deleteTask(@Param() id){
+        this.taskRepository.deleteTask(id.id)
+        return id;
     }
 }
