@@ -13,16 +13,17 @@ export class TaskRepository{
     }
 
     async updateTask(task){
-        this.tasks.filter(oldTask=>{
+        this.tasks = this.tasks.filter(oldTask=>{
             return oldTask.id != task.id
         });
+        console.log(this.tasks)
         this.tasks.push(task);
-        
+
         return this.tasks;
     }
 
     async deleteTask(id){
-        this.tasks.filter(task=>{
+        this.tasks = this.tasks.filter(task=>{
             return task.id != id
         });
         return this.tasks;
