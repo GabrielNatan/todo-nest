@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { CreateTaskDTO } from "./dto/createTask.dto";
 
 @Injectable()
 export class TaskRepository{
@@ -8,7 +9,7 @@ export class TaskRepository{
         return this.tasks;
     }
 
-    async addNewtask(task){
+    async addNewtask(task : CreateTaskDTO){
         this.tasks.push(task);
     }
 
