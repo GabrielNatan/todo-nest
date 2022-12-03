@@ -11,6 +11,7 @@ export class TaskRepository{
     }
 
     async addNewtask(task :TaskEntity){
+        task['id'] = String(this.tasks.length + 1);
         this.tasks.push(task);
     }
 

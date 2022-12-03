@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CreateTaskDTO } from "./dto/createTask.dto";
+import { UpdateTaskDTO } from "./dto/updateTask.dto";
 import { TaskRepository } from "./task.repository";
 
 @Controller('/')
@@ -19,7 +20,7 @@ export class TaskController{
     }
 
     @Put()
-    async updateTask(@Body() updateTask){
+    async updateTask(@Body() updateTask:UpdateTaskDTO){
         this.taskRepository.updateTask(updateTask);
         return updateTask;
     }
