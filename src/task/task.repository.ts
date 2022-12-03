@@ -16,7 +16,6 @@ export class TaskRepository{
         this.tasks = this.tasks.filter(oldTask=>{
             return oldTask.id != task.id
         });
-        console.log(this.tasks)
         this.tasks.push(task);
 
         return this.tasks;
